@@ -24,7 +24,7 @@ function App() {
   // Getting products from database
 	const [product, getProduct] = useState([]);
 	const getProductData = () => {
-		axios.get(`http://localhost:8080/items`)
+		axios.get(`${process.env.REACT_APP_SERVER_PATH}/items`)
 			.then(function (response) {
 				// handle success
 				console.log(response.data)
@@ -47,7 +47,7 @@ function App() {
 
 	const [categories, getCategories] = useState([]);
 	const getCategoriesData = () => {
-		axios.get(`http://localhost:8080/items/category`)
+		axios.get(`${process.env.REACT_APP_SERVER_PATH}/items/category`)
 			.then(function (response) {
 				// handle success
 				getCategories(response.data);
