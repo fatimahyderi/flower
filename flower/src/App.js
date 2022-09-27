@@ -1,5 +1,5 @@
 import './App.css';
-import { Routes, Route } from "react-router-dom";localhost
+import { Routes, Route } from "react-router-dom";
 import { useState, useEffect } from 'react';
 import axios from 'axios'
 import Home from './components/Home';
