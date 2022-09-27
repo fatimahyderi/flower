@@ -27,7 +27,7 @@ export default function AddProductForm() {
     console.log("submit")
 
     let formData = new FormData(e.target);
-    const apiUrl = `http://localhost:8080/items/product`;
+    // const apiUrl = `http://localhost:8080/items/product`;
 
     fetch(`${process.env.REACT_APP_SERVER_PATH}/items/products`, {
       method: 'POST',
