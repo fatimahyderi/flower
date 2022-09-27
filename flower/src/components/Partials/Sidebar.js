@@ -66,7 +66,7 @@ function Sidebar() {
                                     {categories && categories.map((data, key) => {
                                     return (
                                         <>
-                                        <li value={data.name} >{data.name}</li>
+                                        <li>{data.name}</li>
                                         </>
                                     )
                                 })}
