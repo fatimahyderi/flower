@@ -38,7 +38,7 @@ function Sidebar() {
 
 	const [categories, getCategories] = useState([]);
 	const getCategoriesData = () => {
-		axios.get(`http://localhost:8080/items/category`)
+		axios.get(`${process.env.REACT_APP_SERVER_PATH}/items/category`)
 			.then(function (response) {
 				// handle success
 				getCategories(response.data);
