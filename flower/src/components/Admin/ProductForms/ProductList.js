@@ -76,7 +76,9 @@ const ProductsList = () => {
                     <Link to={`/edit/${data._id}`} className="edit"
                       data-toggle="modal"><i class='fas fa-pen'></i></Link>
                   </td>
-                  
+                  <td>
+                    <Link to="/admin" onClick={() => deleteProduct(data._id)} className="delete"><i class='fas fa-trash-alt'></i></Link>
+                  </td>
                 </tr>
               )
             })}
