@@ -29,7 +29,7 @@ export default function AddProductForm() {
     let formData = new FormData(e.target);
     const apiUrl = `http://localhost:8080/items/product`;
 
-    fetch('http://localhost:8080/items/products', {
+    fetch(`${process.env.REACT_APP_SERVER_PATH}/items/products`, {
       method: 'POST',
       body: new URLSearchParams(formData)
     }).then(res => res.json())
@@ -45,7 +45,7 @@ export default function AddProductForm() {
   useEffect(() => {
 
     const getCategoryData = () => {
-      axios.get(`http://localhost:8080/items/categoryFormData`)
+      axios.get(`${process.env.REACT_APP_SERVER_PATH}/items/categoryFormData`)
         .then(function (response) {
           setCategory(response.data);
         })

@@ -7,7 +7,7 @@ function Sidebar() {
     // Getting products from database
 	const [product, getProduct] = useState([]);
 	const getProductData = () => {
-		axios.get(`http://localhost:8080/items`)
+		axios.get(`${process.env.REACT_APP_SERVER_PATH}/items`)
 			.then(function (response) {
 				// handle success
 				console.log(response.data)
