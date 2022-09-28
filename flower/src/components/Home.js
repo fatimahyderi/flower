@@ -1,5 +1,7 @@
 import React from 'react'
 import axios from 'axios'
+
+import ReactPaginate from 'react-paginate';
 import { Link } from 'react-router-dom';
 import Footer from './Partials/Footer';
 import Header from './Partials/Header';
@@ -50,7 +52,10 @@ function Home(props) {
             
             )
         })
-       
+        const pageCount = Math.ceil(productdata.length / productsperpage)
+    const handlePageClick = ({ selected }) => {
+        setPageNumber(selected)
+    }
     return (
         <>
             <div id="templatemo_wrapper_sp">
@@ -70,9 +75,22 @@ function Home(props) {
                             <p>Floral Shop is free website template by templatemo. Sed in suscipit risus, eget consectetur justo. Praesent lacinia, nisi quis commodo consectetur, diam magna laoreet felis, Link pulvinar mauris enim in felis. Phasellus in mauris velit. In pellentesque massa in nisl auctor pellentesque. Donec fermentum convallis purus, id luctus nulla tempus in. Aliquam diam nibh, consectetur quis fringilla facilisis, egestas sed odio. Validate <Link to="http://validator.w3.org/check?uri=referer" rel="nofollow"><strong>XHTML</strong></Link> &amp; <Link to="http://jigsaw.w3.org/css-validator/check/referer" rel="nofollow"><strong>CSS</strong></Link>.</p>
 {displayProducts}
                             
-                        
-                        
-                        
+                        <div>
+                        <ReactPaginate
+                    breakLabel="..."
+                    nextLabel="next >"
+                    onPageChange={handlePageClick}
+                    pageRangeDisplayed={5}
+                    pageCount={pageCount}
+                    previousLabel="< previous"
+                    renderOnZeroPageCount={null}
+                    containerClassName={"paginationBttns"}
+                    previousLinkClassName={"previousBttn"}
+                    nextLinkClassName={"nextBttn"}
+                    disabledClassName={"paginationDisabled"}
+                    activeClassName={"paginationActive"}
+                />
+                        </div>
                            
 
                             <div class="blank_box">
