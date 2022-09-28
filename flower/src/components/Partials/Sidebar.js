@@ -3,7 +3,8 @@ import { useState, useEffect } from 'react';
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 
-function Sidebar() {
+function Sidebar(props) {
+    const { filterResult } = props
     // Getting products from database
 	const [product, getProduct] = useState([]);
 	const getProductData = () => {
@@ -26,14 +27,7 @@ function Sidebar() {
 		getProductData()
 	}, []);
 
-    const [productdata,setProductData] = useState(product)
-    const filterResult = (catItem) => {
-        const result = product.filter((curData) => {
-            return curData.category === catItem;
-        });
-        setProductData(result)
-    }
-    console.log("productdata")
+    
     //Getting Categories from database
 
 	const [categories, getCategories] = useState([]);

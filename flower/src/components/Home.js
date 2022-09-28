@@ -22,6 +22,14 @@ function Home(props) {
         console.log(`error ${error}`);
       })
   }
+  const [productdata,setProductData] = React.useState(products)
+    const filterResult = (catItem) => {
+        const result = products.filter((curData) => {
+            return curData.category === catItem;
+        });
+        setProductData(result)
+    }
+    console.log(productdata)
     return (
         <>
             <div id="templatemo_wrapper_sp">
@@ -34,7 +42,7 @@ function Home(props) {
                 </div>
                 <div id="templatemo_main_wrapper">
                     <div id="templatemo_main">
-                        <Sidebar/>
+                        <Sidebar filterResult={filterResult} />
 
                         <div id="content" class="right">
                             <h2>Welcome to Floral Shop</h2>
