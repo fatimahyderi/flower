@@ -66,7 +66,7 @@ function Sidebar() {
                                     {categories && categories.map((data, key) => {
                                     return (
                                         <>
-                                        <li>{data.name}</li>
+                                        <li value={data.name} onClick={() => filterResult(data.name)}>{data.name}</li>
                                         </>
                                     )
                                 })}
