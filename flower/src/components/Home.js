@@ -1,7 +1,5 @@
 import React from 'react'
 import axios from 'axios'
-
-import ReactPaginate from 'react-paginate';
 import { Link } from 'react-router-dom';
 import Footer from './Partials/Footer';
 import Header from './Partials/Header';
@@ -33,29 +31,6 @@ function Home(props) {
     }
     console.log(productdata)
     
-    const [pageNumber, setPageNumber] = React.useState(0);
-    const productsperpage = 6;
-    const pagesVisited = pageNumber * productsperpage
-
-    const displayProducts = productdata.slice(pagesVisited, pagesVisited + productsperpage).map((data) => {
-            return (
-                
-            <div class="product_box">
-                <Link to="productdetail.html"><img src={`./assets/images/product/${data.image}`} alt="floral set 1" /></Link>
-                <h3>{data.name}</h3>
-                <p class="product_price">{data.price}</p>
-                <p class="add_to_cart">
-                    <Link to={`/productdetail/${data._id}`}>Detail</Link>
-                    <Link to="" onClick={() => onAdd(data)}>Add to Cart</Link>
-                </p>
-            </div>
-            
-            )
-        })
-        const pageCount = Math.ceil(productdata.length / productsperpage)
-    const handlePageClick = ({ selected }) => {
-        setPageNumber(selected)
-    }
     return (
         <>
             <div id="templatemo_wrapper_sp">
@@ -73,24 +48,23 @@ function Home(props) {
                         <div id="content" class="right">
                             <h2>Welcome to Floral Shop</h2>
                             <p>Floral Shop is free website template by templatemo. Sed in suscipit risus, eget consectetur justo. Praesent lacinia, nisi quis commodo consectetur, diam magna laoreet felis, Link pulvinar mauris enim in felis. Phasellus in mauris velit. In pellentesque massa in nisl auctor pellentesque. Donec fermentum convallis purus, id luctus nulla tempus in. Aliquam diam nibh, consectetur quis fringilla facilisis, egestas sed odio. Validate <Link to="http://validator.w3.org/check?uri=referer" rel="nofollow"><strong>XHTML</strong></Link> &amp; <Link to="http://jigsaw.w3.org/css-validator/check/referer" rel="nofollow"><strong>CSS</strong></Link>.</p>
-{displayProducts}
-                            
-                        <div>
-                        <ReactPaginate
-                    breakLabel="..."
-                    nextLabel="next >"
-                    onPageChange={handlePageClick}
-                    pageRangeDisplayed={5}
-                    pageCount={pageCount}
-                    previousLabel="< previous"
-                    renderOnZeroPageCount={null}
-                    containerClassName={"paginationBttns"}
-                    previousLinkClassName={"previousBttn"}
-                    nextLinkClassName={"nextBttn"}
-                    disabledClassName={"paginationDisabled"}
-                    activeClassName={"paginationActive"}
-                />
-                        </div>
+
+                            {products && products.map((data, key) => {
+                            return (
+                                <>
+                            <div class="product_box" key={key}>
+                                <Link to="productdetail.html"><img src={`./assets/images/product/${data.image}`} alt="floral set 1" /></Link>
+                                <h3>{data.name}</h3>
+                                <p class="product_price">{data.price}</p>
+                                <p class="add_to_cart">
+                                    <Link to={`/productdetail/${data._id}`}>Detail</Link>
+                                    <Link to="" onClick={() => onAdd(data)}>Add to Cart</Link>
+                                </p>
+                            </div>
+                            </>
+                            )
+                        })}
+
                            
 
                             <div class="blank_box">
