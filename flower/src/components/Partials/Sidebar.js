@@ -33,7 +33,7 @@ function Sidebar() {
         });
         setProductData(result)
     }
-    console.log(productdata)
+    console.log("productdata")
     //Getting Categories from database
 
 	const [categories, getCategories] = useState([]);
