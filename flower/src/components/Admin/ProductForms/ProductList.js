@@ -69,13 +69,13 @@ const ProductsList = () => {
                     {data.category}
                   </td>
                   <td>
-                    <Link to={`/view/${data._id}`} className="view"><i class='fas fa-eye'></i></Link>
+                    <Link to={`/view/${data._id}`} className="view">View</Link>
                   </td>
                   <td>
-                    <Link to={`/edit/${data._id}`} className="edit"><i class='fas fa-pen'></i></Link>
+                    <Link to={`/edit/${data._id}`} className="edit">Edit</Link>
                   </td>
                   <td>
-                    <Link to="/admin" onClick={() => deleteProduct(data._id)} className="delete"><i class='fas fa-trash-alt'></i></Link>
+                    <Link to="/admin" onClick={() => deleteProduct(data._id)} className="delete">Delete</Link>
                   </td>
                 </tr>
               )
