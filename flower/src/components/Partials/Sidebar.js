@@ -5,50 +5,23 @@ import { Link } from 'react-router-dom'
 
 function Sidebar(props) {
     const { filterResult } = props
-    // Getting products from database
-	const [product, getProduct] = useState([]);
-	const getProductData = () => {
-		axios.get(`${process.env.REACT_APP_SERVER_PATH}/items`)
-			.then(function (response) {
-				// handle success
-				console.log(response.data)
-				getProduct(response.data);
-			})
-			.catch(function (error) {
-				// handle error
-				console.log(error);
-			})
-			.then(function () {
-				// always executed
-			});
-	}
+    const [category, setCategory] = useState();
 
-	useEffect(() => {
-		getProductData()
-	}, []);
+    useEffect(() => {
+        const getCategoryData = () => {
+            axios.get(`${process.env.REACT_APP_SERVER_PATH}/items/categoryFormData`)
+                .then(function (response) {
+                    setCategory(response.data);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                })
+                .then(function () {
+                });
+        }
 
-    
-    //Getting Categories from database
-
-	const [categories, getCategories] = useState([]);
-	const getCategoriesData = () => {
-		axios.get(`${process.env.REACT_APP_SERVER_PATH}/items/category`)
-			.then(function (response) {
-				// handle success
-				getCategories(response.data);
-			})
-			.catch(function (error) {
-				// handle error
-				console.log(error);
-			})
-			.then(function () {
-				// always executed
-			});
-	}
-
-	useEffect(() => {
-		getCategoriesData()
-	}, []);
+        getCategoryData();
+    }, []);
 
   return (
     <>
@@ -57,10 +30,10 @@ function Sidebar(props) {
                                 <h3>Categories</h3>
                                 <div class="content">
                                     <ul class="sidebar_list">
-                                    {categories && categories.map((data, key) => {
+                                    {category && category.map((data, key) => {
                                     return (
                                         <>
-                                        <li value={data.name} onClick={() => filterResult(data.name)}>{data.name}</li>
+                                            <li value={data.name} onClick={() => filterResult(data.name)}>{data.name}</li>
                                         </>
                                     )
                                 })}
