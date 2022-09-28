@@ -22,6 +22,7 @@ function Sidebar(props) {
 
         getCategoryData();
     }, []);
+    
 
   return (
     <>

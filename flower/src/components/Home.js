@@ -30,6 +30,27 @@ function Home(props) {
         setProductData(result)
     }
     console.log(productdata)
+    
+    const [pageNumber, setPageNumber] = React.useState(0);
+    const productsperpage = 6;
+    const pagesVisited = pageNumber * productsperpage
+
+    const displayProducts = productdata.slice(pagesVisited, pagesVisited + productsperpage).map((data) => {
+            return (
+                
+            <div class="product_box">
+                <Link to="productdetail.html"><img src={`./assets/images/product/${data.image}`} alt="floral set 1" /></Link>
+                <h3>{data.name}</h3>
+                <p class="product_price">{data.price}</p>
+                <p class="add_to_cart">
+                    <Link to={`/productdetail/${data._id}`}>Detail</Link>
+                    <Link to="" onClick={() => onAdd(data)}>Add to Cart</Link>
+                </p>
+            </div>
+            
+            )
+        })
+       
     return (
         <>
             <div id="templatemo_wrapper_sp">
@@ -47,23 +68,11 @@ function Home(props) {
                         <div id="content" class="right">
                             <h2>Welcome to Floral Shop</h2>
                             <p>Floral Shop is free website template by templatemo. Sed in suscipit risus, eget consectetur justo. Praesent lacinia, nisi quis commodo consectetur, diam magna laoreet felis, Link pulvinar mauris enim in felis. Phasellus in mauris velit. In pellentesque massa in nisl auctor pellentesque. Donec fermentum convallis purus, id luctus nulla tempus in. Aliquam diam nibh, consectetur quis fringilla facilisis, egestas sed odio. Validate <Link to="http://validator.w3.org/check?uri=referer" rel="nofollow"><strong>XHTML</strong></Link> &amp; <Link to="http://jigsaw.w3.org/css-validator/check/referer" rel="nofollow"><strong>CSS</strong></Link>.</p>
-
-                            {products && products.map((data, key) => {
-                            return (
-                                <>
-                            <div class="product_box" key={key}>
-                                <Link to="productdetail.html"><img src={`./assets/images/product/${data.image}`} alt="floral set 1" /></Link>
-                                <h3>{data.name}</h3>
-                                <p class="product_price">{data.price}</p>
-                                <p class="add_to_cart">
-                                    <Link to={`/productdetail/${data._id}`}>Detail</Link>
-                                    <Link to="" onClick={() => onAdd(data)}>Add to Cart</Link>
-                                </p>
-                            </div>
-                            </>
-                            )
-                        })}
-
+{displayProducts}
+                            
+                        
+                        
+                        
                            
 
                             <div class="blank_box">
